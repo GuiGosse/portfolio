@@ -33,7 +33,11 @@ export function About() {
         <div className="reveal flex justify-center lg:justify-end">
           <div className="relative w-72 h-80 md:w-80 md:h-96 hud-clip glow-pulse" style={{ background: "linear-gradient(135deg, rgba(0,255,127,0.15), rgba(255,215,0,0.1))", border: "1px solid var(--neon-primary)" }}>
             <div className="absolute inset-0 flex items-center justify-center">
-              <span className="font-display font-black text-8xl" style={{ color: "var(--bg-deep)", textShadow: "0 0 40px rgba(0,255,127,0.6)" }}>GG</span>
+                <img 
+                src="./src/public/image/me.jpg" 
+                alt="Foto de perfil" 
+                className="w-full h-full object-cover rounded-lg shadow-lg"
+              />
             </div>
             <div className="scan-line" />
             <div className="absolute top-3 right-3 flex items-center gap-2 font-mono text-[0.65rem] tracking-widest" style={{ color: "var(--neon-primary)" }}>
