@@ -34,8 +34,8 @@ export function About() {
           <div className="relative w-72 h-80 md:w-80 md:h-96 hud-clip glow-pulse" style={{ background: "linear-gradient(135deg, rgba(0,255,127,0.15), rgba(255,215,0,0.1))", border: "1px solid var(--neon-primary)" }}>
             <div className="absolute inset-0 flex items-center justify-center">
                 <img 
-                src="./src/public/image/me.jpg" 
-                alt="Foto de perfil" 
+                src={`${import.meta.env.BASE_URL}images/me.jpg`}
+                alt="Minha foto"
                 className="w-full h-full object-cover rounded-lg shadow-lg"
               />
             </div>
