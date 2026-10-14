@@ -30,8 +30,8 @@ export function Footer() {
         </div>
       </div>
       <div className="mt-12 text-center font-mono text-[0.7rem]" style={{ color: "var(--text-dim)" }}>
-        © 2026 Guilherme Gosse · Codado com ♥ e muita cafeína<br />
-        Feito no Brasil 🇧🇷
+        © 2026 Guilherme Gosse · Codado com auxílio de IA<br />
+        Desenvolvido pelo Lovable - Alterações manuais VS CODE
       </div>
     </footer>
   );

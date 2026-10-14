@@ -1,17 +1,17 @@
 const ITEMS = [
   {
-    period: "2022 → PRESENTE",
-    title: "Desenvolvedor Web · Canal Solar",
-    place: "Paulínia, SP",
+    period: "2022 → 2026",
+    title: "Desenvolvedor · Canal Solar",
+    place: "Campinas, SP",
     desc: "Responsável pelo departamento de TI. Desenvolvimento de soluções internas, automações e sistemas web.",
-    tag: "Automação de contratos · Automação de mídias sociais",
-    badge: "ATUAL",
+    tag: " Ferramentas de produtividade · Automação de contratos · Automação de mídias sociais · Responsável pelos sites",
+   // badge: "ATUAL",
   },
   {
     period: "2022",
     title: "Graduação em Sistemas de Informação",
     place: "PUC-Campinas",
-    desc: "Formação focada em desenvolvimento de software, banco de dados e arquitetura de sistemas.",
+    desc: "Formação focada em desenvolvimento, banco de dados e arquitetura de sistemas.",
   },
   {
     period: "2022 — 2023",
@@ -31,7 +31,7 @@ export function Experience() {
   return (
     <section id="experience" className="relative px-6 md:px-10 py-32">
       <div className="max-w-[1100px] mx-auto">
-        <div className="sec-label reveal">// 004 — TRAJETÓRIA</div>
+        <div className="sec-label reveal">// 005 — TRAJETÓRIA</div>
         <h2 className="reveal font-display font-black leading-[1] mb-20" style={{ fontSize: "clamp(2.5rem, 5vw, 4.5rem)" }}>
           Linha do <span style={{ color: "var(--neon-primary)" }}>tempo</span>
         </h2>

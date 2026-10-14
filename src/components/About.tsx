@@ -11,8 +11,7 @@ export function About() {
             <span style={{ color: "var(--gold-bright)", textShadow: "0 0 24px rgba(255,215,0,0.3)" }}>resolve</span> problemas
           </h2>
           <p className="text-lg leading-relaxed max-w-xl" style={{ color: "var(--text-primary, #E8FFF0)", opacity: 0.85 }}>
-            Desenvolvedor web com foco em performance e experiência do usuário. Atualmente responsável pelo departamento de TI da <span style={{ color: "var(--neon-primary)" }}>Canal Solar</span>, onde construo soluções que economizam horas de trabalho e escalam com o negócio.
-          </p>
+            Desenvolvedor com foco em performance, automação, produtividade e experiência do usuário. Atualmente em busca de realocação no mercado de trabalho. </p>
 
           <div className="mt-12 grid grid-cols-3 gap-6">
             {[

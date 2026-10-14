@@ -27,7 +27,7 @@ export function Contact() {
 
       <div className="max-w-[1400px] mx-auto w-full relative z-10">
         <div className="text-center mb-16">
-          <div className="sec-label reveal">// 005 — CONTATO</div>
+          <div className="sec-label reveal">// 006 — CONTATO</div>
           <h2 className="font-display font-black leading-[0.95] tracking-tight" style={{ fontSize: "clamp(3rem, 9vw, 8rem)" }}>
             <span className="block reveal">VAMOS</span>
             <span className="block reveal" style={{ color: "var(--neon-primary)", animationDelay: "150ms" }}>CONSTRUIR</span>
