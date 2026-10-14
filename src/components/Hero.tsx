@@ -2,47 +2,61 @@ import { useEffect, useRef, useState } from "react";
 import { Terminal } from "./Terminal";
 import { GlitchText } from "./GlitchText";
 
+
+
 function InteractiveCube() {
-  const [rot, setRot] = useState({ x: -15, y: 0 });
+  const cubeRef = useRef<HTMLDivElement>(null);
+  const drag = useRef({
+    active: false,
+    lastX: 0,
+    lastY: 0,
+    x: -15,
+    y: 0,
+  });
+
   const [dragging, setDragging] = useState(false);
   const [interacted, setInteracted] = useState(false);
-  const drag = useRef({ active: false, lastX: 0, lastY: 0, x: -15, y: 0 });
-  const raf = useRef<number>(0);
-
-  useEffect(() => {
-    let prev = performance.now();
-    const tick = (now: number) => {
-      if (!drag.current.active) {
-        drag.current.y += (now - prev) * (360 / 22000);
-        setRot({ x: drag.current.x, y: drag.current.y });
-      }
-      prev = now;
-      raf.current = requestAnimationFrame(tick);
-    };
-    raf.current = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf.current!);
-  }, []);
 
   useEffect(() => {
     const onMove = (e: MouseEvent) => {
-      if (!drag.current.active) return;
+      if (!drag.current.active || !cubeRef.current) return;
+
       drag.current.y += (e.clientX - drag.current.lastX) * 0.5;
-      drag.current.x = Math.max(-80, Math.min(80, drag.current.x - (e.clientY - drag.current.lastY) * 0.5));
+      drag.current.x = Math.max(
+        -80,
+        Math.min(
+          80,
+          drag.current.x - (e.clientY - drag.current.lastY) * 0.5
+        )
+      );
+
       drag.current.lastX = e.clientX;
       drag.current.lastY = e.clientY;
-      setRot({ x: drag.current.x, y: drag.current.y });
+
+      cubeRef.current.style.transform =
+        `rotateX(${drag.current.x}deg) rotateY(${drag.current.y}deg)`;
     };
-    const onUp = () => { drag.current.active = false; setDragging(false); };
+
+    const onUp = () => {
+      if (!drag.current.active) return;
+      drag.current.active = false;
+      setDragging(false);
+    };
+
     window.addEventListener("mousemove", onMove);
     window.addEventListener("mouseup", onUp);
-    return () => { window.removeEventListener("mousemove", onMove); window.removeEventListener("mouseup", onUp); };
+
+    return () => {
+      window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("mouseup", onUp);
+    };
   }, []);
 
   return (
     <div
       className="cube-stage select-none"
       style={{ cursor: dragging ? "grabbing" : "grab" }}
-      onMouseDown={e => {
+      onMouseDown={(e) => {
         drag.current.active = true;
         drag.current.lastX = e.clientX;
         drag.current.lastY = e.clientY;
@@ -51,8 +65,12 @@ function InteractiveCube() {
       }}
     >
       <div
+        ref={cubeRef}
         className="cube"
-        style={{ transform: `rotateX(${rot.x}deg) rotateY(${rot.y}deg)`, animation: "none" }}
+        style={{
+          transform: "rotateX(-15deg) rotateY(0deg)",
+          animation: "none",
+        }}
       >
         <div className="face f1">React</div>
         <div className="face f2">Vue.js</div>
@@ -61,15 +79,20 @@ function InteractiveCube() {
         <div className="face f5">MySQL</div>
         <div className="face f6">Docker</div>
       </div>
+
       <p
         className="font-mono text-[0.6rem] tracking-[0.25em] mt-5 transition-opacity duration-700"
-        style={{ color: "var(--neon-primary)", opacity: interacted ? 0 : 0.8 }}
+        style={{
+          color: "var(--neon-primary)",
+          opacity: interacted ? 0 : 0.8,
+        }}
       >
         ↖ arraste para girar
       </p>
     </div>
   );
 }
+
 
 export function Hero() {
   return (
