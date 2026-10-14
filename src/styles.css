@@ -426,3 +426,475 @@
   background: linear-gradient(90deg, var(--neon-hot), var(--neon-primary));
   box-shadow: 0 0 16px rgba(0, 255, 127, 0.9);
 }
+
+/* Cartão 3D de ferramentas */
+.tool-card-wrap {
+  min-width: 0;
+  height: 100%;
+  min-height: 440px;
+  perspective: 1200px;
+}
+
+.tool-holo-card {
+  position: relative;
+  height: 100%;
+  min-height: 440px;
+  padding: 0 !important;
+  overflow: hidden;
+}
+
+.tool-flip-inner {
+  position: relative;
+  min-height: 440px;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 650ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.tool-flip-inner.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.tool-face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 440px;
+  padding: 1.75rem;
+  overflow: hidden;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.tool-face-front {
+  transform: rotateY(0deg);
+}
+
+.tool-face-back {
+  transform: rotateY(180deg);
+  background: rgba(5, 18, 15, 0.98);
+}
+
+.tool-card-number {
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
+  pointer-events: none;
+  user-select: none;
+  font-family: var(--font-display, inherit);
+  font-size: 7rem;
+  font-weight: 900;
+  line-height: 1;
+  color: var(--gold-bright);
+  opacity: 0.06;
+}
+
+.tool-card-top,
+.tool-preview-header {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.tool-card-index,
+.tool-card-eyebrow,
+.tool-preview-count {
+  font-family: monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  color: var(--text-dim);
+}
+
+.tool-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid;
+  padding: 0.3rem 0.5rem;
+  font-family: monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+}
+
+.tool-status-dot {
+  width: 6px;
+  height: 6px;
+  flex-shrink: 0;
+  border-radius: 50%;
+}
+
+.tool-status-dot.is-animated {
+  animation: blink 1.5s infinite;
+}
+
+.tool-card-title {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 1.25rem;
+  color: var(--text-primary, #e8fff0);
+  font-family: var(--font-display, inherit);
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.tool-card-stack {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.tool-card-description {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  margin-bottom: 1.5rem;
+  color: rgba(232, 255, 240, 0.75);
+  font-size: 0.875rem;
+  line-height: 1.7;
+}
+
+.tool-card-benefit {
+  position: relative;
+  z-index: 1;
+  margin-top: auto;
+  border-top: 1px solid rgba(0, 255, 127, 0.15);
+  padding-top: 1.25rem;
+}
+
+.tool-card-benefit > p {
+  margin-top: 0.5rem;
+  color: var(--gold-bright);
+  font-family: monospace;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.tool-card-actions,
+.tool-preview-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+.tool-card-link,
+.tool-card-preview-button,
+.tool-card-gallery-button,
+.tool-card-return-button {
+  color: var(--neon-primary);
+  font-family: monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.tool-card-preview-button,
+.tool-card-return-button {
+  border: 0;
+  background: transparent;
+}
+
+.tool-card-link:hover,
+.tool-card-preview-button:hover,
+.tool-card-gallery-button:hover,
+.tool-card-return-button:hover {
+  text-decoration: underline;
+}
+
+.tool-preview-header {
+  margin-bottom: 1rem;
+}
+
+.tool-preview-count {
+  color: var(--neon-primary);
+}
+
+.tool-preview-image-button {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border: 1px solid rgba(0, 255, 127, 0.25);
+  background: rgba(0, 255, 127, 0.04);
+  cursor: zoom-in;
+}
+
+.tool-preview-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 350ms ease;
+}
+
+.tool-preview-image-button:hover .tool-preview-image {
+  transform: scale(1.04);
+}
+
+.tool-preview-image-overlay {
+  position: absolute;
+  inset: auto 0 0;
+  padding: 0.75rem;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.85));
+  color: white;
+  font-family: monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-align: left;
+}
+
+.tool-preview-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.tool-preview-footer h3 {
+  color: var(--text-primary, #e8fff0);
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.tool-preview-footer p,
+.tool-preview-empty > p {
+  margin-top: 0.35rem;
+  color: var(--text-dim);
+  font-family: monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+}
+
+.tool-preview-indicators,
+.tool-gallery-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+}
+
+.tool-preview-indicator {
+  display: block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--text-dim);
+  opacity: 0.45;
+}
+
+.tool-preview-indicator.active {
+  width: 16px;
+  border-radius: 4px;
+  background: var(--neon-primary);
+  opacity: 1;
+}
+
+.tool-card-gallery-button {
+  border: 1px solid var(--neon-primary);
+  padding: 0.65rem 0.75rem;
+}
+
+.tool-preview-actions {
+  margin-top: auto;
+  padding-top: 1rem;
+}
+
+.tool-preview-empty {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.tool-preview-placeholder {
+  margin: 1.5rem 0;
+  color: var(--neon-primary);
+  font-family: monospace;
+  font-size: 3rem;
+  opacity: 0.65;
+}
+
+.tool-preview-empty h3 {
+  color: var(--text-primary, #e8fff0);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.tool-preview-empty .tool-card-return-button {
+  margin-top: 2rem;
+}
+
+/* Modal da galeria */
+.tool-gallery-overlay {
+  position: fixed;
+  z-index: 9999;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  background: rgba(0, 0, 0, 0.88);
+  backdrop-filter: blur(10px);
+}
+
+.tool-gallery-modal {
+  width: min(100%, 1000px);
+  max-height: 92vh;
+  overflow: auto;
+  border: 1px solid rgba(0, 255, 127, 0.3);
+  padding: clamp(1rem, 3vw, 2rem);
+  background: #07110e;
+  box-shadow: 0 0 50px rgba(0, 255, 127, 0.08);
+}
+
+.tool-gallery-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.tool-gallery-eyebrow {
+  color: var(--neon-primary);
+  font-family: monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+}
+
+.tool-gallery-header h3 {
+  margin-top: 0.5rem;
+  color: var(--text-primary, #e8fff0);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.tool-gallery-header p {
+  margin-top: 0.4rem;
+  color: var(--text-dim);
+  font-family: monospace;
+  font-size: 0.65rem;
+}
+
+.tool-gallery-close {
+  color: var(--neon-primary);
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+}
+
+.tool-gallery-image-wrap {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.tool-gallery-image {
+  display: block;
+  width: 100%;
+  max-height: 65vh;
+  object-fit: contain;
+}
+
+.tool-gallery-arrow {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid rgba(0, 255, 127, 0.3);
+  color: var(--neon-primary);
+  background: transparent;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+.tool-gallery-arrow:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.tool-gallery-dots {
+  margin-top: 1.25rem;
+}
+
+.tool-gallery-dot {
+  width: 7px;
+  height: 7px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--text-dim);
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.tool-gallery-dot.active {
+  width: 20px;
+  border-radius: 5px;
+  background: var(--neon-primary);
+  opacity: 1;
+}
+
+.tool-gallery-modal button:focus-visible,
+.tool-face button:focus-visible,
+.tool-face a:focus-visible {
+  outline: 2px solid var(--gold-bright);
+  outline-offset: 4px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .tool-card-wrap:hover .tool-flip-inner {
+    transform: rotateY(180deg);
+  }
+}
+
+@media (max-width: 640px) {
+  .tool-card-wrap,
+  .tool-holo-card,
+  .tool-flip-inner,
+  .tool-face {
+    min-height: 460px;
+  }
+
+  .tool-face {
+    padding: 1.25rem;
+  }
+
+  .tool-gallery-overlay {
+    padding: 0.5rem;
+  }
+
+  .tool-gallery-image-wrap {
+    gap: 0.35rem;
+  }
+
+  .tool-gallery-arrow {
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tool-flip-inner,
+  .tool-preview-image {
+    transition: none;
+  }
+}
+
